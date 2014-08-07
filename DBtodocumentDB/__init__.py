@@ -27,5 +27,5 @@ def department():
 
 
 if __name__=='__main__':
-    department()
+    projects()
 

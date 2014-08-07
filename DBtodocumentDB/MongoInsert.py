@@ -12,17 +12,17 @@ def construct_project_record(rows):
             dict['pnumber'] = p_number
             dict['pname'] = p_name
             dict['dname'] = d_name
-            dict['employees'] = [{'fname':f_name,'lname':l_name,'hours':str(hours)}]
+            dict['employees'] = [{'fname':f_name,'lname':l_name,'hours':float(hours)}]
         elif dict['pnumber']!=p_number:#new record
             dict_list.append(dict)
             dict = {}
             dict['pnumber'] = p_number
             dict['pname'] = p_name
             dict['dname'] = d_name
-            dict['employees'] = [{'fname':f_name,'lname':l_name,'hours':str(hours)}]
+            dict['employees'] = [{'fname':f_name,'lname':l_name,'hours':float(hours)}]
         elif dict['pnumber']== p_number:#new employee
             employee_list = dict['employees']
-            employee_list.append({'fname':f_name,'lname':l_name,'hours':str(hours)})
+            employee_list.append({'fname':f_name,'lname':l_name,'hours':float(hours)})
             dict['employees'] = employee_list
 
     return dict_list#returns the target JSON structure abstracted in a list
