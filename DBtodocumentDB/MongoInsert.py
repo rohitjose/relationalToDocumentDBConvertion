@@ -2,7 +2,7 @@ __author__ = 'rohit'
 from pymongo import MongoClient
 
 def construct_project_record(rows):
-    '''Constructs the JSON structure for the MongoDB document'''
+    '''Constructs the JSON structure for the MongoDB document for the project table'''
     dict = {}
     dict_list = []
     for record in rows:
@@ -37,7 +37,7 @@ def insert_record(dict_record):
     connection.close()
 
 def construct_department_record(records):
-    '''Constructs the JSON structure for the MongoDB document'''
+    '''Constructs the JSON structure for the MongoDB document for the department table'''
     dict = {}
     dict_list = []
     for record in records:
@@ -63,7 +63,7 @@ def construct_department_record(records):
     return dict_list#returns the target JSON structure abstracted in a list
 
 def insert_record_department(dict_record):
-    '''Inserts a record into MongoDB'''
+    '''Inserts a record into MongoDB for the department'''
     connection = MongoClient("localhost")#establishes connection
     db = connection.COMPANY.department#connects to the collection
     #inserts the record

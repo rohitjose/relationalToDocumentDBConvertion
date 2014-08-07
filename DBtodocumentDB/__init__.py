@@ -3,6 +3,7 @@ import MongoInsert
 import AccessSQL
 
 def projects():
+    '''Projects mapper'''
     #retrieves the rows of the MySQL DB
     rows = AccessSQL.accessSQL("select p.pnumber,p.pname, d.dname, e.fname,e.lname,w.hours \
     from PROJECT p , DEPARTMENT d , WORKS_ON w, EMPLOYEE e \
@@ -15,13 +16,15 @@ def projects():
         MongoInsert.insert_record(item)
 
 def department():
+    '''Department mapper'''
+    #retrieves the rows of the MySQL DB
     rows = AccessSQL.accessSQL("SELECT D.Dnumber,D.DName, E.Lname, L.Dlocation \
     FROM DEPARTMENT D, EMPLOYEE E, DEPT_LOCATIONS L \
     WHERE D.Mgr_ssn = E.Ssn AND  D.Dnumber=L.Dnumber \
     ORDER BY D.Dnumber")
-
+    #Constructs the target JSON structure
     dicts = MongoInsert.construct_department_record(rows)
-
+    # Loop for insertion into Mongo DB
     for item in dicts:
         MongoInsert.insert_record_department(item)
 
